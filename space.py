@@ -6,13 +6,16 @@ import sys
 def gameOver():
 
         pass
-        
 
+def rocks(scene):
+        if random.randrange(0,50)==0:
+                start_y = random.randrange(0,display_height)
+                scene.append(rock(start_y))
+                             
 def gameLoop():
     x = (display_width* 0.5)
     y = (display_height*0.5)
-    player = player_class(load_sprites('./media/graphics/player/small'),
-                    load_sprites('./media/graphics/lasers/player'),x,y)
+    player = player_class(x,y)
     running = True
                                  
     scene = [player]
@@ -41,14 +44,13 @@ def gameLoop():
                                     player.dy = 0
 
             gameDisplay.fill((255,255,255))
-            if random.randrange(0,50)==0:
-                start_y = random.randrange(0,display_height)
-                scene.append(block(load_sprites('./media/graphics/rock'),
-                                   display_width,start_y,-20,0,200,100))
+            rocks(scene)
             for i in scene:
-                    print(type(i))
                     i.display()
-                    if type(i) in (laser,block):
+                    if type(i) in (laser,rock):
+                        if type(i)==rock or (type(i)==laser and i.parent != player):
+                                if intersect(player,i):
+                                        player.hit()
                         if i.x >= display_width or i.x <= 0-i.width:
                             scene.remove(i)
             
