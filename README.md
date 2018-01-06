@@ -1,5 +1,7 @@
 # Space Game
 
-This is a side-scrolling game that is implemented using Pygame wrapper for the SDL2 libraries
+This is a side-scrolling space shooter that is implemented using the Pygame wrapper for the SDL2 libraries
 
-The project is not finished
+Please install Pygame before running the game. Run space.py to play the game
+
+## The project is not finished yet.
