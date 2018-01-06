@@ -18,7 +18,7 @@ def intersect(r,b):
         ry2 = r.y + r.y2
         if r.Hit == False:
                 if b.x<rx1<(b.x+b.width) or b.x<rx2<(b.x+b.width):
-                        if b.y<ry1<(b.y+b.height) or b.y<ry1<(b.y+b.height):
+                        if b.y<ry1<(b.y+b.height) or b.y<ry2<(b.y+b.height):
                                 return True
         return False
 
@@ -76,7 +76,10 @@ class rocket(Sprite):
         dy = 0
         width = 100
         height = 50
-        return laser(self.laser_sprites,self.x,self.y,dx,dy,width,height,self)
+        return laser(self.laser_sprites,
+                     (self.x+self.x2),
+                     (self.y+(self.y1+self.y2)/2),
+                     dx,dy,width,height,self)
 
     def display(self):
         i = max(min(len(self.sprites)-1,self.HP),0)
@@ -99,7 +102,7 @@ class player_class(rocket):
             self.y += self.dy
             if self.Hit == True:
                     self.j += 1
-                    if self.j == 20:
+                    if self.j == 30:
                             self.Hit = False
                             self.j = 0
             if self.Hit == False or self.j%2==0:
