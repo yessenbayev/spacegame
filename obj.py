@@ -100,13 +100,14 @@ class player_class(rocket):
     def display(self):
             self.x += self.dx
             self.y += self.dy
+            
             if self.Hit == True:
                     self.j += 1
                     if self.j == 30:
                             self.Hit = False
                             self.j = 0
             if self.Hit == False or self.j%2==0:
-                    i = max(min(len(self.sprites)-1,self.HP),0)
+                    i = max(self.HP,0)
                     gameDisplay.blit(self.sprites[i],(self.x,self.y))
 
 class enemy(rocket):
