@@ -3,10 +3,6 @@ from obj import *
 import random
 import sys
 
-def gameOver():
-
-        pass
-
 def rocks(scene):
         if random.randrange(0,50)==0:
                 start_y = random.randrange(0,display_height)
@@ -57,7 +53,8 @@ def gameLoop():
                                     player.dy = 0
             screenedge(player)
             gameDisplay.fill((255,255,255))
-            rocks(scene)
+            if not GameOver:
+                    rocks(scene)
             if player.HP <= 0:
                     GameOver = True
             for i in scene:
