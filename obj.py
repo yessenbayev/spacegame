@@ -22,6 +22,16 @@ def intersect(r,b):
                                 return True
         return False
 
+def laser_intersect(l, b):
+        rx1 = l.x
+        rx2 = l.x + l.width
+        ry1 = l.y
+        ry2 = l.y + l.height
+        if b.x<rx1<(b.x+b.width) or b.x<rx2<(b.x+b.width):
+                if b.y<ry1<(b.y+b.height) or b.y<ry2<(b.y+b.height):
+                        return True
+        return False
+
 class GameObject(object):
     def __init__(self,x,y,dx,dy):
         self.x = x

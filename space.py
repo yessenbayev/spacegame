@@ -27,42 +27,58 @@ def gameLoop():
     y = (display_height*0.5)
     player = player_class(x,y)
     running = True
+    GameOver = False
                                  
     scene = [player]
+    lasers = []
     while running:
             for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                             running = False
                             
-                    elif event.type == pygame.KEYDOWN:
-                            if event.key == pygame.K_LEFT:
+                    elif event.type == pygame.KEYDOWN and not GameOver:
+                            if event.key == pygame.K_a:
                                 player.dx = -10
-                            elif event.key == pygame.K_RIGHT:
+                            elif event.key == pygame.K_d:
                                 player.dx = 10
-                            if event.key == pygame.K_UP:
+                            if event.key == pygame.K_w:
                                 player.dy = -10
-                            elif event.key == pygame.K_DOWN:
+                            elif event.key == pygame.K_s:
                                 player.dy = 10
                             if event.key == pygame.K_SPACE:
-                                scene.append(player.shot())
+                                l = player.shot()
+                                scene.append(l)
+                                lasers.append(l)
 
                     elif event.type == pygame.KEYUP:
-                            if event.key in (pygame.K_RIGHT,pygame.K_LEFT):
+                            if event.key in (pygame.K_d,pygame.K_a):
                                     player.dx = 0
-                            if event.key in (pygame.K_UP,pygame.K_DOWN):
+                            if event.key in (pygame.K_w,pygame.K_s):
                                     player.dy = 0
             screenedge(player)
             gameDisplay.fill((255,255,255))
             rocks(scene)
+            if player.HP <= 0:
+                    GameOver = True
             for i in scene:
-                    i.display()
-                    if type(i) in (laser,rock):
-                        if type(i)==rock or (type(i)==laser and i.parent != player):
-                                if intersect(player,i):
+                if GameOver is True and type(i)!=laser:
+                        i.dx = 0
+                        i.dy = 0
+                i.display()
+                if type(i) in (laser,rock):
+                        if type(i)==rock:
+                                if intersect(player,i) and not GameOver:
                                         player.hit()
+                                for j in lasers:
+                                        if laser_intersect(j,i):
+                                                scene.remove(i)
+                                                scene.remove(j)
+                                                lasers.remove(j)
+                                                break
                         if i.x >= display_width or i.x <= 0-i.width:
-                            scene.remove(i)
-            
+                                scene.remove(i)
+                                if type(i)==laser:
+                                        lasers.remove(i)
             pygame.display.update()
             clock.tick(60)
 

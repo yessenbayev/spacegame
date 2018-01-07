@@ -5,7 +5,7 @@ This is a side-scrolling space shooter that is implemented using the Pygame wrap
 Please install Pygame before running the program. Run space.py to play the game
 
 ## Controls
-1. Directional keys = Movement
-2. Space = Shoot (No functionality yet)
+1. WASD = Movement
+2. Space = Shoot
 
 ## The project is not finished yet.
