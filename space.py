@@ -1,5 +1,6 @@
 from init import *
 from obj import *
+import text
 import random
 import sys
 
@@ -24,27 +25,33 @@ def gameLoop():
     player = player_class(x,y)
     running = True
     GameOver = False
+    score = 0
                                  
     scene = [player]
     lasers = []
     while running:
             for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                            running = False
-                            
-                    elif event.type == pygame.KEYDOWN and not GameOver:
-                            if event.key == pygame.K_a:
-                                player.dx = -10
-                            elif event.key == pygame.K_d:
-                                player.dx = 10
-                            if event.key == pygame.K_w:
-                                player.dy = -10
-                            elif event.key == pygame.K_s:
-                                player.dy = 10
-                            if event.key == pygame.K_SPACE:
-                                l = player.shot()
-                                scene.append(l)
-                                lasers.append(l)
+                    if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+                            pygame.quit()
+                            sys.exit()
+                                                       
+                    elif event.type == pygame.KEYDOWN:
+                            if GameOver:
+                                    if event.key == pygame.K_RETURN:
+                                            gameLoop()
+                            else:
+                                    if event.key == pygame.K_a:
+                                        player.dx = -10
+                                    elif event.key == pygame.K_d:
+                                        player.dx = 10
+                                    if event.key == pygame.K_w:
+                                        player.dy = -10
+                                    elif event.key == pygame.K_s:
+                                        player.dy = 10
+                                    if event.key == pygame.K_SPACE:
+                                        l = player.shot()
+                                        scene.append(l)
+                                        lasers.append(l)
 
                     elif event.type == pygame.KEYUP:
                             if event.key in (pygame.K_d,pygame.K_a):
@@ -71,15 +78,21 @@ def gameLoop():
                                                 scene.remove(i)
                                                 scene.remove(j)
                                                 lasers.remove(j)
+                                                score += 1000
                                                 break
                         if i.x >= display_width or i.x <= 0-i.width:
                                 scene.remove(i)
                                 if type(i)==laser:
                                         lasers.remove(i)
+            text.print_score(score,GameOver)
+            if GameOver:
+                    gameDisplay.blit(text.GameOverSurf,
+                                     text.GameOverRect)
+                    gameDisplay.blit(text.GameOverSurf2,
+                                     text.GameOverRect2)
             pygame.display.update()
             clock.tick(60)
+            if not GameOver:
+                    score += 1
 
 gameLoop()
-
-pygame.quit()
-sys.exit()
