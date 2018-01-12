@@ -3,7 +3,10 @@
 Please install Pygame before running the program.
 
 pip install pygame
-(pip3 install pygame)
+
+or
+
+pip3 install pygame
 
 Run space.py to play the game.
 
