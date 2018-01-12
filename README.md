@@ -13,5 +13,3 @@ Run space.py to play the game.
 1. WASD = Movement
 2. Space = Shoot
 3. Esc = Exit program
-
-## The project is not finished yet.
