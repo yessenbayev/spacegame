@@ -20,7 +20,7 @@ GameOverSurf2, GameOverRect2 = text_objects('Press ENTER to start the game again
 GameOverRect2.center = (display_width/2,display_height/2+100)
 
 def print_score(score,GameOver):
-    ts, tr = text_objects('Score: {}'.format(score),'freesansbold.ttf',
+    ts, tr = text_objects('{}: Score'.format(score),'freesansbold.ttf',
                           50, (0,0,0))
     tr.topright = (display_width,0)
     gameDisplay.blit(ts,tr)
