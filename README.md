@@ -1,6 +1,6 @@
 # Space Game
 
-This program is intended as a learning exerices and in no way is a complete game.
+This program is intended as a learning exercise and in no way is a complete game.
 
 Please install Pygame before running the program.
 
