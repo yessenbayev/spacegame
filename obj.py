@@ -48,8 +48,8 @@ class Sprite(GameObject):
                 self.x += self.dx
                 self.y += self.dy
                 gameDisplay.blit(self.sprites[i],(self.x,self.y))
-                        
-class block(Sprite): #any block 
+
+class block(Sprite): #any block
         def __init__(self,sprite,x,y,dx,dy,width,height):
                 Sprite.__init__(self,x,y,dx,dy,sprite)
                 self.width = width
@@ -94,7 +94,7 @@ class rocket(Sprite):
     def display(self):
         i = max(min(len(self.sprites)-1,self.HP),0)
         Sprite.display(self,i)
-        
+
 class player_class(rocket):
     def __init__(self,x,y):
             rocket.__init__(self,load_sprites('./media/graphics/player/small'),
@@ -110,7 +110,7 @@ class player_class(rocket):
     def display(self):
             self.x += self.dx
             self.y += self.dy
-            
+
             if self.Hit == True:
                     self.j += 1
                     if self.j == 30:

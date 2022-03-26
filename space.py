@@ -4,8 +4,10 @@ import text
 import random
 import sys
 
+difficulty = 30
+
 def rocks(scene):
-        if random.randrange(0,50)==0:
+        if random.randrange(0,difficulty)==0:
                 start_y = random.randrange(0,display_height)
                 scene.append(rock(start_y))
 
@@ -18,7 +20,7 @@ def screenedge(player):
                 player.dx = 0
         if (ry1 < 0 and player.dy < 0) or (ry2 > display_height and player.dy > 0):
                 player.dy = 0
-                             
+
 def gameLoop():
     x = (display_width* 0.1)
     y = (display_height*0.5)
@@ -26,7 +28,7 @@ def gameLoop():
     running = True
     GameOver = False
     score = 0
-                                 
+
     scene = [player]
     lasers = []
     while running:
@@ -34,7 +36,7 @@ def gameLoop():
                     if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                             pygame.quit()
                             sys.exit()
-                                                       
+
                     elif event.type == pygame.KEYDOWN:
                             if GameOver:
                                     if event.key == pygame.K_RETURN:
@@ -59,7 +61,7 @@ def gameLoop():
                             if event.key in (pygame.K_w,pygame.K_s):
                                     player.dy = 0
             screenedge(player)
-            gameDisplay.fill((255,255,255))
+            gameDisplay.fill((0,0,0))
             if not GameOver:
                     rocks(scene)
             if player.HP <= 0:
