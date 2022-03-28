@@ -39,7 +39,7 @@ def gameLoop():
 
                     elif event.type == pygame.KEYDOWN:
                             if GameOver:
-                                    if event.key == pygame.K_RETURN:
+                                    if event.key == pygame.K_SPACE:
                                             gameLoop()
                             else:
                                     if event.key == pygame.K_a:
