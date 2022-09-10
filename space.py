@@ -97,4 +97,5 @@ def gameLoop():
             if not GameOver:
                     score += 1
 
-gameLoop()
+if __name__=="__main__":
+        gameLoop()
