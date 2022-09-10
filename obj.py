@@ -69,7 +69,7 @@ class laser(block):
 class rock(block):
         def __init__(self,start_y):
                 block.__init__(self,load_sprites('./media/graphics/rock'),
-                               display_width,start_y,-20,0,200,100)
+                               display_width,start_y,-20,0,200,200)
 
 class rocket(Sprite):
     def __init__ (self,sprites,laser_sprites,HP,x1,x2,y1,y2,x,y,dx=0,dy=0):

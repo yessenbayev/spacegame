@@ -9,7 +9,7 @@ def text_objects(text,font,size,color):
     TextRect = TextSurf.get_rect()
     return TextSurf, TextRect
 
-GameOverSurf, GameOverRect = text_objects('Game Over',
+GameOverSurf, GameOverRect = text_objects('Fuck You, Uncle DeeDee!',
                                           'freesansbold.ttf',
                                           115,(255,255,255))
 GameOverRect.center = (display_width/2,display_height/2)
