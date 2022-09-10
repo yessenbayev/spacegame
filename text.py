@@ -1,6 +1,6 @@
+from __future__ import absolute_import, division, print_function, unicode_literals
 from init import *
 import pygame
-
 
 def text_objects(text,font,size,color):
     '''Parses text to gameDisplay.blit(TextSurf,TextRect)'''
